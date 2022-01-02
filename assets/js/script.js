@@ -1,9 +1,10 @@
 const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
+const currentTime = parseInt(moment().format("H"));
 //let currentDayEl = document.querySelector("#currentDay");
 //currentDayEl.textContent = currentDate;
+//3 & 4 are the same as 6 & 7
 let currentDayEl = $("#currentDay");
 currentDayEl.text(currentDate);
-
 
 
 function buttonClickHandler() {
@@ -16,8 +17,16 @@ $("button").on("click", buttonClickHandler);
 
 //on page load
 $("textarea").each(function() {
+    let elHour = $(this).data("hour")
+    console.log(elHour);
+   if (elHour < currentTime) {
     $(this).addClass("past")
-})
+   } else if (elHour === currentTime) {
+    $(this).addClass("present")
+   } else {
+    $(this).addClass("future")
+   }  
+});
 
 
 let hour9 = localStorage.getItem("hour9");
@@ -59,4 +68,5 @@ $("#hour17").val(hour17);
 //save button on right side to save changes
 //save to local storage
 //items persist during page refresh
+//refresh page every 6 minutes
 //do items wipe at start of new day?
