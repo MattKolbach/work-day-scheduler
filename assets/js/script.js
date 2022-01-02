@@ -56,7 +56,10 @@ $("#hour16").val(hour16);
 let hour17 = localStorage.getItem("hour17");
 $("#hour17").val(hour17);
 
-
+//auto refresh the page
+const pageRefresh = setInterval(function() {
+    location.reload()
+}, 360000);
 
 
 //on button click, grab textarea info, save to local storage
